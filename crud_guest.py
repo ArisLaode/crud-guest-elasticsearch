@@ -8,8 +8,6 @@ app = Flask(__name__)
 
 es = Elasticsearch("http://127.0.0.1:9200")
 
-# class ElasData():
-
 @app.route('/index', methods=['POST'])
 def create():
 
