@@ -2,7 +2,7 @@
   - python = 3.5.2
   - elasticsearch = 6.3.1
   - gunicorn = 19.9.0
-  - Flask = 
+  - Flask = 1.1.1
 
 # Runing
   - App Flask : gunicorn --preload -w 1 -b 0.0.0.0:18000 crud_guest:app
