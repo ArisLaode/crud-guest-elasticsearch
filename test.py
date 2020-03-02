@@ -8,6 +8,31 @@ class TestCrud(unittest.TestCase):
     def setUp(self):
         self.test_crud = app.test_client()
 
+    def test_create_index(self):
+        url = '/index'
+
+        if_expec_output ={
+            "index": "index exists"
+        }
+
+        else_expec_output ={
+            'index': 'index create'
+        }
+
+        response = self.test_crud.post(url)
+        self.assertEqual(response.status_code, 200, msg="Bad response")
+        data_response = json.loads(response.get_data().decode('utf-8'))
+
+        if data_response == if_expec_output:
+            self.assertDictEqual(data_response, if_expec_output,
+                            msg="Dictionary not same as expected")
+            print('index exists')
+        else:
+            self.assertDictEqual(data_response, else_expec_output,
+                             msg="Dictionary not same as expected")
+            print('index create')
+
+
     def test_insert(self):
         url = '/create'
 

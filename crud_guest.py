@@ -11,7 +11,7 @@ es = Elasticsearch("http://127.0.0.1:9200")
 @app.route('/index', methods=['POST'])
 def create():
 
-    index_name = "guest-book"
+    index_name = "face-test-2020"
 
     request_body = {
         "settings" :{
@@ -22,12 +22,17 @@ def create():
     res = es.indices.exists(index=index_name)
 
     if res:
-        print('index exists!')
+        data = {
+            'index': 'index exists'
+        }
     else:
-        create_index = es.indices.create(index=index_name, body=request_body)
-        print('Index Create')
+        res = es.indices.create(index=index_name, body=request_body)
+        print(res)
+        data = {
+            'index': 'index create'
+        }
 
-    return 'index exists' if res else 'index create'
+    return jsonify(data)
 
 @app.route('/create', methods=['POST'])
 def insert():
